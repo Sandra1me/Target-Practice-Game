@@ -104,7 +104,7 @@ while running:
 
     # Shooting
     if timeS>20:
-        shoot_state="redy"
+        shoot_state="ready"
         timeS=0
     if shoot_state=="fire":
         fire(playerX-6,playerY-6)
