@@ -21,13 +21,19 @@ playerX, playerY = pygame.mouse.get_pos()
 enemyImg=pygame.image.load("dartboard.png")
 enemyX=random.randint(64,736)
 enemyY=random.randint(64,536)
+timeE=0
+limit=random.randint(100,200)
 
 # Shoot
 # shoot_state=ready we cant see it on the screen
 # shoot_state=fire we see the shoot
 shootImg=pygame.image.load("shoot.png")
 shoot_state="ready"
-time=0
+timeS=0
+
+# Other
+score=0
+fails=0
 
 
 def player(x,y):
@@ -53,6 +59,18 @@ while running:
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.button==1:
                 fire(playerX,playerY)
+        
+        # Collision
+        shootRect=shootImg.get_rect(topleft=(playerX,playerY))
+        enemyRect=enemyImg.get_rect(topleft=(enemyX,enemyY))        
+        collide=pygame.Rect.colliderect(shootRect,enemyRect)
+
+        if collide and event.type==pygame.MOUSEBUTTONDOWN:
+            score+=1
+            timeE=0
+            enemyX=random.randint(64,736)
+            enemyY=random.randint(64,536)
+
 
     scr.fill((250,250,250))
 
@@ -76,14 +94,21 @@ while running:
 
     # Enemy
     enemy(enemyX,enemyY)
+    timeE+=1
+
+    if timeE>=limit:
+        timeE=0
+        fails+=1
+        enemyX=random.randint(64,736)
+        enemyY=random.randint(64,536)
 
     # Shooting
-    if time>20:
+    if timeS>20:
         shoot_state="redy"
-        time=0
+        timeS=0
     if shoot_state=="fire":
         fire(playerX-6,playerY-6)
-        time+=1
+        timeS+=1
         
 
     # Player
