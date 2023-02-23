@@ -1,6 +1,8 @@
 import pygame
 import random
 
+from pygame import mixer
+
 # Initialize pygame
 pygame.init()
 
@@ -11,7 +13,10 @@ pygame.display.set_caption("Target Shooting")
 icon=pygame.image.load("icon.png")
 pygame.display.set_icon(icon)
 
+# Background and sound
 background=pygame.image.load("background.png")
+mixer.music.load("background.mp3")
+mixer.music.play(-1)
 
 # Player
 playerImg=pygame.image.load("target.png")
@@ -31,9 +36,17 @@ shootImg=pygame.image.load("shoot.png")
 shoot_state="ready"
 timeS=0
 
-# Other
-score=0
-fails=0
+# Score
+score_val=0
+font=pygame.font.Font("freesansbold.ttf",32)
+textX=10
+textY=15
+
+# Fails
+fails_val=0
+
+# Game over text
+gameover_font=pygame.font.Font("freesansbold.ttf",64)
 
 
 def player(x,y):
@@ -47,6 +60,18 @@ def fire(x,y):
     shoot_state="fire"
     scr.blit(shootImg,(x,y))
 
+def show_score(x,y):
+    score=font.render("Score: "+ str(score_val), True, (0,0,0))
+    scr.blit(score,(x,y))
+
+def show_fails(x,y):
+    fails=font.render("Fails: "+ str(fails_val), True, (0,0,0))
+    scr.blit(fails,(x,y))
+
+def game_over():
+    gameover=gameover_font.render("GAME OVER", True, (0,0,0))
+    scr.blit(gameover,(200,250))
+
 
 # Game loop
 running=True
@@ -59,6 +84,8 @@ while running:
         if event.type==pygame.MOUSEBUTTONDOWN:
             if event.button==1:
                 fire(playerX,playerY)
+                shoot_sound=mixer.Sound("shoot.mp3")
+                shoot_sound.play()
         
         # Collision
         shootRect=shootImg.get_rect(topleft=(playerX,playerY))
@@ -66,7 +93,7 @@ while running:
         collide=pygame.Rect.colliderect(shootRect,enemyRect)
 
         if collide and event.type==pygame.MOUSEBUTTONDOWN:
-            score+=1
+            score_val+=1
             timeE=0
             enemyX=random.randint(64,736)
             enemyY=random.randint(64,536)
@@ -98,7 +125,7 @@ while running:
 
     if timeE>=limit:
         timeE=0
-        fails+=1
+        fails_val+=1
         enemyX=random.randint(64,736)
         enemyY=random.randint(64,536)
 
@@ -114,5 +141,15 @@ while running:
     # Player
     player(playerX,playerY)
 
+    # Score
+    show_score(textX,textY)
+    show_fails(textX,textY+47)
+
+    if fails_val>=5:
+        game_over()
+        fails_val=5
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            if event.button==1:
+                break
 
     pygame.display.update()
