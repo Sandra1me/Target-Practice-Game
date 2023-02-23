@@ -4,16 +4,17 @@ This target practice game is a familiar shooting game where you have to aim and 
 
 You will test your aiming capabilities and reflexes by clicking a changing dartboard. Try to hit as many as possible since if you reach five failures: Game over.
 
-![Game picture](https://user-images.githubusercontent.com/82436702/218762566-a0e42285-4ca7-48ae-9bc5-22109c4e9ecd.png)
+![GamePicture](https://user-images.githubusercontent.com/82436702/220931416-ac1fd12d-4e6d-487b-8ba8-a7f8d28376d7.png)
+
+![GameOver](https://user-images.githubusercontent.com/82436702/220931711-2f38c921-4071-41f9-a72e-7a5e5d67d0f3.png)
 
 The dartboards will keep appearing and disappearing in aleatory positions and times, so you have to be prepared and focused hit them.
 
-![Shooting picture](https://user-images.githubusercontent.com/82436702/218762926-12d8316f-6280-450b-a45b-49c996685a3d.png)
+![Shooting](https://user-images.githubusercontent.com/82436702/220931619-b35549bd-2290-46a4-b759-6317b6019d5b.png)
 
 The aiming reticle will follow your mouse wherever you move it (it won't get out of the game window though).
 
-![GameGif](https://user-images.githubusercontent.com/82436702/218765095-48ed3479-71d5-4803-822b-351c7f33c794.gif)
-
+![ShootingSample](https://user-images.githubusercontent.com/82436702/220932454-e498b2bf-0aa0-4e06-a7b6-ec7c9b10ab7c.gif)
 
 ## Installation
 
@@ -30,11 +31,6 @@ If we want to play this game, we only need to install the pygame library and run
 For the installation, refer to the "Installation" section.
 
 The game will continue until we fail five times or click the exit button (the X above).
-
-
-## Roadmap
-
-Shortly, I will add both score and failure meters. I will also add background music and sound effects.
 
 
 ## License
