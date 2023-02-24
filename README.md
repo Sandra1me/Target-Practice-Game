@@ -8,7 +8,7 @@ You will test your aiming capabilities and reflexes by clicking a changing dartb
 
 ![GameOver](https://user-images.githubusercontent.com/82436702/220931711-2f38c921-4071-41f9-a72e-7a5e5d67d0f3.png)
 
-The dartboards will keep appearing and disappearing in aleatory positions and times, so you have to be prepared and focused hit them.
+The dartboards will keep appearing and disappearing in aleatory positions and times, so you have to be prepared and focused to hit it.
 
 ![Shooting](https://user-images.githubusercontent.com/82436702/220931619-b35549bd-2290-46a4-b759-6317b6019d5b.png)
 
